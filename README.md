@@ -10,7 +10,7 @@
 
 ```sh
 # inside git repo
-pbcopy < tailor.diff
+pbcopy < tailor.patch
 npm run build
 TCE_SERVER_PORT=9090 npx http-server -p $TCE_SERVER_PORT ./dist
 ```
