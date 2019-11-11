@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@extensionengine/eslint-config": "^1.1.0",
-    "@extensionengine/rollup-plugin-tailor-ce": "github:extensionengine/rollup-plugin-tailor-ce",
+    "@extensionengine/rollup-plugin-tailor-ce": "^0.1.1",
     "babel-eslint": "^10.0.3",
     "bili": "^4.8.1",
     "del-cli": "^3.0.0",
