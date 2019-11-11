@@ -9,11 +9,12 @@
 ## Instructions
 
 ```sh
-# inside git repo
+# inside project directory
 pbcopy < tailor.patch
 npm run build
-TCE_SERVER_PORT=9090 npx http-server -p $TCE_SERVER_PORT ./dist
+npm run serve # serves content element bundle on `localhost:9090`
 ```
+
 ```sh
 # switch to Tailor directory
 pbpaste | git apply

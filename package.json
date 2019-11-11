@@ -1,8 +1,58 @@
 {
   "name": "tce-example",
   "version": "0.0.0",
+  "private": true,
   "description": "Tailor content element example",
+  "keywords": [],
+  "homepage": "https://github.com/vladimyr/tce-example",
+  "bugs": {
+    "url": "https://github.com/vladimyr/tce-example/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vladimyr/tce-example.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Dario Vladovic",
+    "email": "d.vladimyr+dev@gmail.com",
+    "url": "https://github.com/vladimyr"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "main": "index.js",
+  "scripts": {
+    "prebuild": "del-cli dist",
+    "build": "bili",
+    "dev": "bili -w",
+    "lint": "eslint --ext .js,.vue .",
+    "serve": "http-server -p 9090 dist"
+  },
+  "dependencies": {
+    "sass-web-fonts": "^2.1.0",
+    "vue-swal": "^1.0.0"
+  },
+  "devDependencies": {
+    "@extensionengine/eslint-config": "^1.1.0",
+    "@extensionengine/rollup-plugin-tailor-ce": "github:extensionengine/rollup-plugin-tailor-ce",
+    "babel-eslint": "^10.0.3",
+    "bili": "^4.8.1",
+    "del-cli": "^3.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-semistandard": "^15.0.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-vue": "^6.0.0",
+    "http-server": "^0.11.1",
+    "rollup-plugin-alias": "^2.2.0",
+    "rollup-plugin-vue": "^5.1.2",
+    "vue-template-compiler": "^2.6.10"
+  },
   "tailor": {
     "label": "TCE Counter",
     "type": "TCE_COUNTER",
@@ -10,48 +60,5 @@
       "icon": "mdi-counter",
       "forceFullWidth": false
     }
-  },
-  "scripts": {
-    "lint": "eslint --ext .js,.vue .",
-    "prebuild": "del-cli dist",
-    "build": "bili",
-    "dev": "bili -w"
-  },
-  "keywords": [],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/vladimyr/tce-example.git"
-  },
-  "author": {
-    "email": "d.vladimyr+dev@gmail.com",
-    "name": "Dario Vladovic",
-    "url": "https://github.com/vladimyr"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vladimyr/tce-example/issues"
-  },
-  "homepage": "https://github.com/vladimyr/tce-example",
-  "dependencies": {
-    "sass-web-fonts": "^2.1.0",
-    "vue-swal": "^1.0.0"
-  },
-  "devDependencies": {
-    "bili": "^4.8.0",
-    "del-cli": "^1.1.0",
-    "eslint": "^5.16.0",
-    "eslint-config-semistandard": "^13.0.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.2",
-    "eslint-plugin-node": "^9.0.1",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "mustache": "^3.0.1",
-    "read-pkg-up": "^6.0.0",
-    "rollup-plugin-alias": "^1.5.1",
-    "rollup-plugin-virtual": "^1.0.1",
-    "rollup-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10"
   }
 }

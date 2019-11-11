@@ -2,34 +2,34 @@
 
 const path = require('path');
 
-const babel = {
-  runtimeHelpers: true
-};
-
-const alias = {
-  resolve: ['.scss', '.vue', '.js'],
-  '@': path.join(__dirname, './src')
-};
-
 /** @type {import('bili').Config} */
 module.exports = {
-  bundleNodeModules: true,
   output: {
     format: ['cjs', 'es', 'iife', 'iife-min'],
     // TODO: Figure out how to fix `rollup-plugin-vue` issue with sourcemaps in
     //       watch mode: https://github.com/vuejs/rollup-plugin-vue/issues/238
     sourceMap: false
   },
-  postcss: {
-    extract: true
-  },
+  bundleNodeModules: ['rollup-plugin-vue', 'vue-runtime-helpers'],
   plugins: {
-    tce: true,
+    'tailor-ce': true,
     vue: true,
-    babel,
-    alias
+    postcss: {
+      extract: 'dist/tce-example.css'
+    },
+    babel: {
+      runtimeHelpers: true,
+      sourceMap: true,
+      extensions: ['.js', '.vue']
+    },
+    alias: {
+      resolve: ['.scss', '.vue', '.js'],
+      entries: [
+        { find: '@', replacement: path.resolve(__dirname, './src') }
+      ]
+    }
   },
   resolvePlugins: {
-    tce: require('./build/@tailor/rollup-plugin-tce')
+    'tailor-ce': require('@extensionengine/rollup-plugin-tailor-ce')
   }
 };

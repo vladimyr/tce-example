@@ -1,26 +1,21 @@
 diff --git a/client/components/course/Settings/index.vue b/client/components/course/Settings/index.vue
-index 4ecb0eac..fafba533 100644
+index 0ef62010..f64985da 100644
 --- a/client/components/course/Settings/index.vue
 +++ b/client/components/course/Settings/index.vue
 @@ -1,5 +1,6 @@
  <template>
-   <v-container>
-+    <tce-example--counter></tce-example--counter>
+   <v-container class="mt-4">
++    <tce-example--counter />
      <v-layout row align-start>
        <v-card>
-         <sidebar
+         <sidebar @action="onActionClick" :is-publishing="isPublishing" />
 diff --git a/client/main.js b/client/main.js
-index a9d8724d..7caa4403 100644
+index 6a5ece16..ab5d2b86 100644
 --- a/client/main.js
 +++ b/client/main.js
-@@ -42,20 +42,47 @@ Vue.use(Timeago, {
-   }
- });
-
-+const TCE_SERVER_PORT = 9090;
-+
- const registry = new ElementRegistry(Vue);
- registry.initialize().then(() => {
+@@ -56,18 +56,43 @@ Vue.use(Timeago, {
+ const contentPluginRegistry = new ContentPluginRegistry(Vue);
+ contentPluginRegistry.initialize().then(() => {
    sync(store, router);
 -  /* eslint-disable no-new */
 -  new Vue({
@@ -30,11 +25,12 @@ index a9d8724d..7caa4403 100644
 -    render: h => h(App),
 -    provide() {
 -      return {
--        $teRegistry: registry,
+-        $teRegistry: contentPluginRegistry.elementRegistry,
+-        $ccRegistry: contentPluginRegistry.containerRegistry,
 -        $storageService: assetsApi
 -      };
 -    }
-+  loadTCE('tce-example', () => {
++  loadContentElement('tce-example', () => {
 +    console.info(window.__TAILOR_CONTENT_ELEMENTS__);
 +    Object.values(window.__TAILOR_CONTENT_ELEMENTS__).forEach(it => Vue.use(it));
 +    /* eslint-disable no-new */
@@ -45,7 +41,8 @@ index a9d8724d..7caa4403 100644
 +      render: h => h(App),
 +      provide() {
 +        return {
-+          $teRegistry: registry,
++          $teRegistry: contentPluginRegistry.elementRegistry,
++          $ccRegistry: contentPluginRegistry.containerRegistry,
 +          $storageService: assetsApi
 +        };
 +      }
@@ -53,9 +50,9 @@ index a9d8724d..7caa4403 100644
    });
  });
 +
-+function loadTCE(name, cb) {
-+  loadStyle(`//localhost:${TCE_SERVER_PORT}/${name}.iife.css`);
-+  loadScript(`//localhost:${TCE_SERVER_PORT}/${name}.iife.js`, cb);
++function loadContentElement(name, cb) {
++  loadStyle(`//localhost:9090/${name}.css`);
++  loadScript(`//localhost:9090/${name}.iife.js`, cb);
 +}
 +
 +function loadScript(url, cb) {

@@ -6,11 +6,11 @@
         <v-card-actions class="counter white blue-grey--text text--darken-3">
           <v-layout align-center justify-center>
             <strong class="counter-label">Counter:</strong>
-            <v-btn color="pink" flat icon @click="decrement">
+            <v-btn @click="decrement" color="pink" flat icon>
               <v-icon>mdi-chevron-down</v-icon>
             </v-btn>
             <span class="counter-state">{{ count }}</span>
-            <v-btn color="light-green" flat icon @click="increment">
+            <v-btn @click="increment" color="light-green" flat icon>
               <v-icon>mdi-chevron-up</v-icon>
             </v-btn>
           </v-layout>
