@@ -22,7 +22,9 @@
     "src",
     "dist"
   ],
-  "main": "index.js",
+  "main": "dist/tce-example.js",
+  "unpkg": "dist/tce-example.iife.js",
+  "module": "dist/tce-example.esm.js",
   "scripts": {
     "prebuild": "del-cli dist",
     "build": "bili",
@@ -53,6 +55,7 @@
     "rollup-plugin-vue": "^5.1.2",
     "vue-template-compiler": "^2.6.10"
   },
+  "jsdelivr": "dist/tce-example.iife.js",
   "tailor": {
     "label": "TCE Counter",
     "type": "TCE_COUNTER",
